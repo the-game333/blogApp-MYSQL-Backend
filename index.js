@@ -8,6 +8,7 @@ import cors from"cors";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 const storage = multer.diskStorage({
@@ -18,7 +19,6 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + file.originalname);
   },
 });
-app.use(cors());
 const upload = multer({ storage});
 
 app.post("/api/upload", await upload.single("file"),  function (req, res) {
