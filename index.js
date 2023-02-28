@@ -8,7 +8,21 @@ import cors from"cors";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://localhost:3000',
+    'https://main--thriving-froyo-f1f7df.netlify.app/'
+  ],
+  credentials:true,
+  methods : ['GET','PUT','POST','DELETE'],
+  allowedHeaders:[
+    'Access-Control-Allow-Origin',
+    'Content-Type',
+    'Authorisation'
+  ],
+
+}
+));
 app.use(express.json());
 app.use(cookieParser());
 const storage = multer.diskStorage({
