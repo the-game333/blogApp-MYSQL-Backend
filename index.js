@@ -8,20 +8,7 @@ import cors from"cors";
 
 const app = express();
 
-app.use(cors({
-  origin: [
-    'https://blogapp-backend-qext.onrender.com/'
-  ],
-  credentials:true,
-  methods : ['GET','PUT','POST','DELETE'],
-  allowedHeaders:[
-    'Access-Control-Allow-Origin',
-    'Content-Type',
-    'Authorisation'
-  ],
-
-}
-));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 const storage = multer.diskStorage({
