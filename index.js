@@ -20,8 +20,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage});
 
-app.use(cors());
-app.options('*', cors());
+app.use(cors({
+  origin: '*'
+}));
 app.post("/api/upload", await upload.single("file"),  function (req, res) {
   console.log(req.file);
   const file = req?.file;
