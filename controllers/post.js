@@ -25,11 +25,11 @@ export const getPost = (req, res) => {
 };
 
 export const addPost = (req, res) => {
-  //const token = req.cookies.access_token;
- //if (!token) return res.status(401).json("Not authenticated!");
+  const token = req.cookies.access_token;
+ if (!token) return res.status(401).json("Not authenticated!");
 
-  //jwt.verify(token, "jwtkey", (err, userInfo) => {
-   //if (err) return res.status(403).json("Token is not valid!");
+  jwt.verify(token, "jwtkey", (err, userInfo) => {
+   if (err) return res.status(403).json("Token is not valid!");
 
     const q =
       "INSERT INTO posts(`title`, `descr`, `img`, `cat`, `date`,`uid`) VALUES (?)";
@@ -47,15 +47,15 @@ export const addPost = (req, res) => {
       if (err) return res.status(500).json(err);
       return res.json("Post has been created.");
     });
- // });
+  });
 };
 
 export const deletePost = (req, res) => {
-  //const token = req.cookies.access_token;
-  //if (!token) return res.status(401).json("Not authenticated!");
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json("Not authenticated!");
 
-  //jwt.verify(token, "jwtkey", (err, userInfo) => {
-   // if (err) return res.status(403).json("Token is not valid!");
+  jwt.verify(token, "jwtkey", (err, userInfo) => {
+   if (err) return res.status(403).json("Token is not valid!");
 
     const postId = req.params.id;
     const q = "DELETE FROM posts WHERE `id` = ? AND `uid` = ?";
@@ -65,15 +65,15 @@ export const deletePost = (req, res) => {
 
       return res.json("Post has been deleted!");
     });
- // });
+ });
 };
 
 export const updatePost = (req, res) => {
-  // const token = req.cookies.access_token;
-  // if (!token) return res.status(401).json("Not authenticated!");
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json("Not authenticated!");
 
-  // jwt.verify(token, "jwtkey", (err, userInfo) => {
-  //   if (err) return res.status(403).json("Token is not valid!");
+  jwt.verify(token, "jwtkey", (err, userInfo) => {
+    if (err) return res.status(403).json("Token is not valid!");
 
     const postId = req.params.id;
     const q =
@@ -85,5 +85,5 @@ export const updatePost = (req, res) => {
       if (err) return res.status(500).json(err);
       return res.json("Post has been updated.");
     });
-  //});
+  });
 };
