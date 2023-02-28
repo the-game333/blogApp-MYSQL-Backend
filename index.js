@@ -10,8 +10,7 @@ const app = express();
 
 app.use(cors({
   origin: [
-    'https://localhost:3000',
-    'https://main--thriving-froyo-f1f7df.netlify.app/'
+    'https://blogapp-backend-qext.onrender.com/'
   ],
   credentials:true,
   methods : ['GET','PUT','POST','DELETE'],
